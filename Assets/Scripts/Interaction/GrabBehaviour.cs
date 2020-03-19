@@ -8,7 +8,7 @@ class GrabBehaviour : MonoBehaviour
     private static Color enterColor = new Color(0, 0, 0.3f, 1);
     private static Color moveColor = new Color(0, 0.3f, 0, 1);
 
-    private Rigidbody _target = null;
+    private Grabbable _target = null;
     private Transform _anchor = null;
     private int _state = 0;
     private bool _exit = true;
@@ -32,10 +32,10 @@ class GrabBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.name.StartsWith("Cube"))
+        if (other.GetComponent<Grabbable>() == null)
             return;
 
-        var newTarget = other.GetComponent<Rigidbody>();
+        var newTarget = other.GetComponent<Grabbable>();
         if (newTarget == _target)
         {
             _exit = false;
@@ -43,7 +43,7 @@ class GrabBehaviour : MonoBehaviour
         }
         if (_target != null && _state == 1)
             StopMove();
-        _target = other.GetComponent<Rigidbody>();
+        _target = other.GetComponent<Grabbable>();
         if (_target != null)
         {
             _exit = false;
@@ -54,7 +54,12 @@ class GrabBehaviour : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnCollisionEnter(Collision col)
+    {
+        //Todo: how do we define a grab using collision?
+    }
+
+    /*void OnTriggerExit(Collider other)
     {
         //Todo: bug where the _target is never set to null again
         if (other.GetComponent<Rigidbody>() != _target)
@@ -66,7 +71,7 @@ class GrabBehaviour : MonoBehaviour
             SetColor(null);
             _target = null;
         }
-    }
+    }*/
 
     public void OnStateChanged(int state)
     {
@@ -75,33 +80,22 @@ class GrabBehaviour : MonoBehaviour
             return;
         if (state == 1)
             StartMove();
-        else if (state == 0)
+        else if (state == 2 || state == 0)
         {
             StopMove();
-            if (_exit)
-                _target = null;
-            else
-                SetColor(false);
+            _target = null;
         }
     }
 
     void StartMove()
     {
-        //_target.useGravity = false;
-        //_target.isKinematic = true;
-        _target.GetComponent<Grabbable>().OnGrab(_anchor);
-        //_anchor.SetParent(_target.transform.parent, true);
-        //_target.transform.SetParent(_anchor, true);
+        _target.OnGrab(_anchor);
         SetColor(true);
     }
 
     void StopMove()
     {
-        //_target.transform.SetParent(_anchor.parent, true);
-        //_anchor.parent = transform;
-        _target.GetComponent<Grabbable>().OnRelease();
-        //_target.useGravity = true;
-        //_target.isKinematic = false;
+        _target.OnRelease();
         SetColor(null);
     }
 
