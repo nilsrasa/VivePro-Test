@@ -56,6 +56,7 @@ class GrabBehaviour : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        //Todo: bug where the _target is never set to null again
         if (other.GetComponent<Rigidbody>() != _target)
             return;
         if (_state == 1)
@@ -86,8 +87,8 @@ class GrabBehaviour : MonoBehaviour
 
     void StartMove()
     {
-        _target.useGravity = false;
-        _target.isKinematic = true;
+        //_target.useGravity = false;
+        //_target.isKinematic = true;
         _target.GetComponent<Grabbable>().OnGrab(_anchor);
         //_anchor.SetParent(_target.transform.parent, true);
         //_target.transform.SetParent(_anchor, true);
@@ -99,8 +100,8 @@ class GrabBehaviour : MonoBehaviour
         //_target.transform.SetParent(_anchor.parent, true);
         //_anchor.parent = transform;
         _target.GetComponent<Grabbable>().OnRelease();
-        _target.useGravity = true;
-        _target.isKinematic = false;
+        //_target.useGravity = true;
+        //_target.isKinematic = false;
         SetColor(null);
     }
 
