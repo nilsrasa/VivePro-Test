@@ -30,33 +30,23 @@ class GrabBehaviour : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision col)
     {
-        if (other.GetComponent<Grabbable>() == null)
+        var newTarget = col.collider.GetComponent<Grabbable>();
+        if (newTarget == null || newTarget.IsGrabbed || newTarget == _target)
             return;
 
-        var newTarget = other.GetComponent<Grabbable>();
-        if (newTarget == _target)
-        {
-            _exit = false;
-            return;
-        }
         if (_target != null && _state == 1)
             StopMove();
-        _target = other.GetComponent<Grabbable>();
+
+        _target = col.collider.GetComponent<Grabbable>();
         if (_target != null)
         {
-            _exit = false;
             if (_state == 1)
                 StartMove();
             else
                 SetColor(false);
         }
-    }
-
-    void OnCollisionEnter(Collision col)
-    {
-        //Todo: how do we define a grab using collision?
     }
 
     /*void OnTriggerExit(Collider other)

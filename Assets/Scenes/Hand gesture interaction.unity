@@ -894,6 +894,7 @@ GameObject:
   - component: {fileID: 800493374}
   - component: {fileID: 800493373}
   - component: {fileID: 800493372}
+  - component: {fileID: 800493375}
   - component: {fileID: 800493371}
   m_Layer: 0
   m_Name: RightHand (Push)
@@ -911,9 +912,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 800493370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a1cf5beb11c404abc67c79666788ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 413cce0f7322efc42942affc8173e533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ResetCondition:
+    LeftHandMissing: 0
+    RightHandMissing: 1
+  PrepareCondition:
+    Left: -1
+    Right: 24
+    MinMatchFrames: 2
+    MaxMissingFrames: 15
+  TriggerCondition:
+    Left: -1
+    Right: 231
+    MinMatchFrames: 0
+    MaxMissingFrames: 10
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 914575016}
+        m_MethodName: OnStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &800493372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +993,18 @@ Transform:
   m_Father: {fileID: 844850525}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &800493375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800493370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49367089f1457f34bbad2378d486b6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &844850524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,12 +1076,12 @@ MonoBehaviour:
     RightHandMissing: 0
   PrepareCondition:
     Left: 24
-    Right: 1
+    Right: -1
     MinMatchFrames: 2
     MaxMissingFrames: 15
   TriggerCondition:
-    Left: 0
-    Right: 0
+    Left: 231
+    Right: -1
     MinMatchFrames: 0
     MaxMissingFrames: 10
   OnStateChanged:
@@ -1088,7 +1128,7 @@ MonoBehaviour:
   linkColor: {r: 1, g: 1, b: 1, a: 1}
   showGestureColor: 0
   material: {fileID: 2100000, guid: 541ba1d74377fe84bb57609518f2b801, type: 2}
-  colliderType: 1
+  colliderType: 2
 --- !u!54 &914575014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1668,7 +1708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61f72e255210484b97f9d78258b6372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grabProperties: {fileID: 11400000, guid: b049715617a15ef4a8260fc3e88f9348, type: 2}
 --- !u!54 &1704774006
 Rigidbody:
   m_ObjectHideFlags: 0

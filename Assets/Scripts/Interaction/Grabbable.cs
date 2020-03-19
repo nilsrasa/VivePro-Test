@@ -12,6 +12,8 @@ public class Grabbable : MonoBehaviour
 
     private bool _isGrabbed = false;
 
+    public bool IsGrabbed => _isGrabbed;
+
     private Rigidbody _rigidbody;
 
     void Awake()
