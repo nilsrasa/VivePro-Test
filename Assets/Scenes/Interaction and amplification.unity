@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 800493372}
   - component: {fileID: 800493375}
   - component: {fileID: 800493371}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: RightHand (Push)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1265,7 @@ GameObject:
   - component: {fileID: 914575011}
   - component: {fileID: 914575012}
   - component: {fileID: 914575016}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: LeftHand (Grab)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,6 +1397,8 @@ GameObject:
   - component: {fileID: 928508594}
   - component: {fileID: 928508593}
   - component: {fileID: 928508596}
+  - component: {fileID: 928508598}
+  - component: {fileID: 928508597}
   - component: {fileID: 928508595}
   m_Layer: 0
   m_Name: HandAmplifier
@@ -1433,20 +1435,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 4.3798895
+      outSlope: 4.3798895
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.19632974
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      value: 2
+      inSlope: 0.5666604
+      outSlope: 0.5666604
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.56429064
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1455,7 +1457,7 @@ MonoBehaviour:
   rightComfortPoint: {fileID: 0}
   leftStatus: 0
   rightStatus: 0
-  displayControllers: 0
+  displayControllers: 2
   target_maxDistance: 0.75
   verboseInput: 0
   curves: []
@@ -1490,19 +1492,19 @@ MonoBehaviour:
     RightHandMissing: 1
   PrepareCondition:
     Left: -1
-    Right: 32
+    Right: 128
     MinMatchFrames: 2
     MaxMissingFrames: 10
   TriggerCondition:
     Left: -1
-    Right: 16
+    Right: -1
     MinMatchFrames: 0
     MaxMissingFrames: 10
   OnStateChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 928508593}
-        m_MethodName: OnRightStateChanged
+        m_MethodName: OnRightOkStateChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1528,12 +1530,12 @@ MonoBehaviour:
     LeftHandMissing: 1
     RightHandMissing: 0
   PrepareCondition:
-    Left: 32
+    Left: 128
     Right: -1
     MinMatchFrames: 2
     MaxMissingFrames: 10
   TriggerCondition:
-    Left: 16
+    Left: -1
     Right: -1
     MinMatchFrames: 0
     MaxMissingFrames: 10
@@ -1541,7 +1543,85 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 928508593}
-        m_MethodName: OnLeftStateChanged
+        m_MethodName: OnLeftOkStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &928508597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928508592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413cce0f7322efc42942affc8173e533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResetCondition:
+    LeftHandMissing: 0
+    RightHandMissing: 1
+  PrepareCondition:
+    Left: -1
+    Right: 32
+    MinMatchFrames: 2
+    MaxMissingFrames: 10
+  TriggerCondition:
+    Left: -1
+    Right: -1
+    MinMatchFrames: 0
+    MaxMissingFrames: 10
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 928508593}
+        m_MethodName: OnRightThumbStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &928508598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928508592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413cce0f7322efc42942affc8173e533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResetCondition:
+    LeftHandMissing: 1
+    RightHandMissing: 0
+  PrepareCondition:
+    Left: 32
+    Right: -1
+    MinMatchFrames: 2
+    MaxMissingFrames: 10
+  TriggerCondition:
+    Left: -1
+    Right: -1
+    MinMatchFrames: 0
+    MaxMissingFrames: 10
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 928508593}
+        m_MethodName: OnLeftThumbStateChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2814,7 +2894,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876494674}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.5}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children:
   - {fileID: 1380092255}
@@ -2824,7 +2904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 759, y: 427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1876494676

@@ -73,36 +73,35 @@ public class HandTranslationAmplifier : MonoBehaviour
     // Input handling 
     #region InputHandling
 
-    private int _leftState, _rightState;
 
-    private bool rightTriggerDown
+    private bool rightTriggerDown;
+    private bool leftTriggerDown;
+    private bool aDown;
+    private bool xDown;
+    private bool rightReset, leftReset;
+
+    public void OnLeftOkStateChanged(int state)
     {
-        get { return _rightState == 2; }
+        xDown = state == 1;
     }
 
-    private bool leftTriggerDown
+    public void OnLeftThumbStateChanged(int state)
     {
-        get { return _leftState == 2; }
+        if (!leftReset && leftTriggerDown && state != 1)
+            leftReset = true;//Reset is valid if was down but is up now
+        leftTriggerDown = state == 1;
     }
 
-    private bool aDown
+    public void OnRightOkStateChanged(int state)
     {
-        get { return _rightState == 1; }
+        aDown = state == 1;
     }
 
-    private bool xDown
+    public void OnRightThumbStateChanged(int state)
     {
-        get { return _leftState == 1; }
-    }
-
-    public void OnLeftStateChanged(int state)
-    {
-        this._leftState = state;
-    }
-
-    public void OnRightStateChanged(int state)
-    {
-        this._rightState = state;
+        if (!rightReset && rightTriggerDown && state != 1)
+            rightReset = true;//Reset is valid if was down but is up now
+        rightTriggerDown = state == 1;
     }
 
     #endregion
@@ -118,13 +117,13 @@ public class HandTranslationAmplifier : MonoBehaviour
         setControllerVisibility(displayControllers);
 
         //leftStatusText.gameObject.transform.parent = leftHand.transform;
-        leftStatusText.gameObject.transform.localPosition = new Vector3(-0.07f,0.01f,0.115f);
-        leftStatusText.gameObject.transform.localRotation = Quaternion.Euler(77f,19f,17f);
+        //leftStatusText.gameObject.transform.localPosition = new Vector3(-0.07f,0.01f,0.115f);
+        //leftStatusText.gameObject.transform.localRotation = Quaternion.Euler(77f,19f,17f);
         leftStatusText.text = "Press X to calibrate";
 
         //rightStatusText.transform.parent = rightHand.transform;
-        rightStatusText.transform.localPosition = new Vector3(-0.07f,0.01f,0.115f);
-        rightStatusText.gameObject.transform.localRotation = Quaternion.Euler(77f,19f,17f);
+        //rightStatusText.transform.localPosition = new Vector3(-0.07f,0.01f,0.115f);
+        //rightStatusText.gameObject.transform.localRotation = Quaternion.Euler(77f,19f,17f);
         rightStatusText.text = "Press A to calibrate";
 
         // THIS WAS USED IN OUR EXPERIMENT. We generated a bunch of curves to run through.
@@ -171,8 +170,9 @@ public class HandTranslationAmplifier : MonoBehaviour
                 leftComfortPoint.transform.parent = leftShoulder.transform;
                 leftStatus = AmpStatus.calibrateMax;
                 leftStatusText.text = "Press Trigger at\nmax reach";
+                leftReset = false;
             }
-            else {
+            else if (leftReset) {
                 if (leftReachSphere != null) {
                     Destroy(leftReachSphere);
                 }
@@ -200,8 +200,9 @@ public class HandTranslationAmplifier : MonoBehaviour
                 rightComfortPoint.transform.parent = rightShoulder.transform;
                 rightStatus = AmpStatus.calibrateMax;
                 rightStatusText.text = "Press Trigger at\nmax reach";
+                rightReset = false;
             }
-            else {
+            else if (rightReset) {
                 if (rightReachSphere != null) {
                     Destroy(rightReachSphere);
                 }
@@ -233,6 +234,7 @@ public class HandTranslationAmplifier : MonoBehaviour
             GameObject amplifiedHand = (side == HandSide.left ? amplifiedLeft : amplifiedRight);
             GameObject reachSphere = (side == HandSide.left ? leftReachSphere : rightReachSphere);
             Vector3 newPosition = hand.transform.position;
+            Debug.Log(side.ToString()+": "+Physics.Raycast(comfortPosition, (hand.transform.position - comfortPosition).normalized, out hit, Mathf.Infinity, layerMask));
 
             if (Physics.Raycast(comfortPosition, (hand.transform.position - comfortPosition).normalized, out hit, Mathf.Infinity, layerMask)){
                 newPosition = interpolatePosition(side, reachSphere.transform.position,comfortPosition, hand.transform.position, reachSphere.transform.localScale.x, hit.point);
