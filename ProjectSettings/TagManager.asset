@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - projectile
+  - FxTemporaire
+  - AmplifiedLeft
+  - AmplifiedRight
   layers:
   - Default
   - TransparentFX
@@ -27,8 +31,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - HandAmplifier (Left)
+  - HandAmplifier (Right)
   - 
   - 
   - 

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ViveHandTracking {
-
-enum HandColliderType { None, Trigger, Collider }
+    public enum HandColliderType { None, Trigger, Collider }
 
 class HandRenderer : MonoBehaviour {
   // color look-up for different gestures
