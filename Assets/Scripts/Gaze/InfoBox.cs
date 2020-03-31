@@ -17,7 +17,11 @@ public class InfoBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //calculate the direction vector from the camera
+        Vector3 dir = (transform.position - Camera.main.transform.position).normalized;
+
+        //Look at the point behind the canvas, because canvases are inverted
+        transform.LookAt(transform.position + dir, Vector3.up);
     }
 
     public void Init(string name, string desc)
