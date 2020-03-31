@@ -6,6 +6,8 @@ using UnityEngine;
 public class InfoUponGaze : MonoBehaviour, IGazeFocusable
 {
     [SerializeField] private Material _highlightMat;
+    [SerializeField] private InfoBox _infoBox;
+    [SerializeField, TextArea(3, 5)] private string _infoMsg = "";
 
     private Renderer _renderer;
     private Color _originalColor;
@@ -14,12 +16,14 @@ public class InfoUponGaze : MonoBehaviour, IGazeFocusable
     public void GazeFocusChanged(bool hasFocus)
     {
         _highlight.SetActive(hasFocus);
+        _infoBox.gameObject.SetActive(hasFocus);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         InitHighlight();
+        _infoBox.Init(name, _infoMsg);
     }
 
     // Update is called once per frame
