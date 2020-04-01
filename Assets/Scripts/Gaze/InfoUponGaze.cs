@@ -13,22 +13,18 @@ public class InfoUponGaze : MonoBehaviour, IGazeFocusable
     private GameObject _highlight;
     public void GazeFocusChanged(bool hasFocus)
     {
-        if (!hasFocus)
-        {
-            StartCoroutine(HideTimer());
-        }
-        else
-        {
-            StopAllCoroutines();
-            _highlight.SetActive(hasFocus);
-            _infoBox.gameObject.SetActive(hasFocus);
-        }
+        //Hide or show highlight and infobox if gazed or not
+        _highlight.SetActive(hasFocus);
+        _infoBox.gameObject.SetActive(hasFocus);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         InitHighlight();
+        //Subscribe to the infobox gaze event
+        _infoBox.OnGazeFocusChanged += GazeFocusChanged;
+        //Init the infobox
         _infoBox.Init(name, _infoMsg);
     }
 
@@ -48,10 +44,8 @@ public class InfoUponGaze : MonoBehaviour, IGazeFocusable
         _highlight.SetActive(false);
     }
 
-    IEnumerator HideTimer()
+    private void OnDestroy()
     {
-        yield return new WaitForSecondsRealtime(_timeOut);
-        _highlight.SetActive(false);
-        _infoBox.gameObject.SetActive(false);
+        _infoBox.OnGazeFocusChanged -= GazeFocusChanged;
     }
 }
