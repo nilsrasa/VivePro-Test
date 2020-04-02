@@ -942,7 +942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631902380}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   linkColor: {r: 1, g: 1, b: 1, a: 1}
   showGestureColor: 0
   material: {fileID: 2100000, guid: 541ba1d74377fe84bb57609518f2b801, type: 2}
-  colliderType: 2
+  colliderType: 0
 --- !u!54 &800493373
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1463,13 +1463,13 @@ MonoBehaviour:
     LeftHandMissing: 1
     RightHandMissing: 0
   PrepareCondition:
-    Left: 24
-    Right: -1
+    Left: -1
+    Right: 24
     MinMatchFrames: 2
     MaxMissingFrames: 15
   TriggerCondition:
-    Left: 231
-    Right: -1
+    Left: -1
+    Right: 231
     MinMatchFrames: 0
     MaxMissingFrames: 10
   OnStateChanged:
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   linkColor: {r: 1, g: 1, b: 1, a: 1}
   showGestureColor: 0
   material: {fileID: 2100000, guid: 541ba1d74377fe84bb57609518f2b801, type: 2}
-  colliderType: 2
+  colliderType: 0
 --- !u!54 &914575014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   - {fileID: 1681078455}
   - {fileID: 1852269777}
   - {fileID: 356869305}
-  colliderType: 0
+  colliderType: 2
 --- !u!1 &928508592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,7 +1703,7 @@ MonoBehaviour:
   rightComfortPoint: {fileID: 0}
   leftStatus: 0
   rightStatus: 0
-  displayControllers: 2
+  displayControllers: 0
   target_maxDistance: 0.75
   verboseInput: 0
   curves: []
@@ -2961,7 +2961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1704774004
 Transform:
   m_ObjectHideFlags: 0
@@ -3748,7 +3748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1990796835
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4211,7 +4211,7 @@ MonoBehaviour:
   - {fileID: 4647222897787323}
   - {fileID: 4911600339067427}
   - {fileID: 4381852195470775}
-  colliderType: 0
+  colliderType: 2
 --- !u!1 &1576290549902819
 GameObject:
   m_ObjectHideFlags: 0

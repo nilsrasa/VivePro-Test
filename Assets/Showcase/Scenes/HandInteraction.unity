@@ -566,7 +566,7 @@ MonoBehaviour:
     LeftHandMissing: 0
     RightHandMissing: 0
   PrepareCondition:
-    Left: 32
+    Left: 128
     Right: 32
     MinMatchFrames: 5
     MaxMissingFrames: 20
