@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gaze_Settings : MonoBehaviour
+public class GazeSettings : MonoBehaviour
 {
     [Header("Highlight settings")]
     [SerializeField, Tooltip("The base material used for drawing highlights")]
@@ -12,8 +12,8 @@ public class Gaze_Settings : MonoBehaviour
         get { return new Material(_instance._highlightMaterial); } 
     }
 
-    private static Gaze_Settings _instance;
-    public static Gaze_Settings Instance
+    private static GazeSettings _instance;
+    public static GazeSettings Instance
     {
         get { return _instance; }
     }

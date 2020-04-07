@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tobii.G2OM;
 using UnityEngine;
 
-public class Gaze_Highlight : MonoBehaviour, IGazeFocusable
+public class HighlightUponGaze : MonoBehaviour, IGazeFocusable
 {
     [Header("Highlight")]
     [SerializeField, Tooltip("The color of the highlight")]
@@ -14,9 +14,12 @@ public class Gaze_Highlight : MonoBehaviour, IGazeFocusable
     private MeshFilter[] _meshFilters;
 
     private GameObject _highlight;
+    private bool _isHighlighted;
+    public bool IsHighlighted { get { return _isHighlighted; } }
     public void GazeFocusChanged(bool hasFocus)
     {
         _highlight.SetActive(hasFocus);
+        _isHighlighted = hasFocus;
     }
 
     private void Start()
@@ -47,7 +50,7 @@ public class Gaze_Highlight : MonoBehaviour, IGazeFocusable
         //Adding the meshfilter and copying the mesh from the original object
         _highlight.AddComponent<MeshFilter>().mesh = mesh;
         //Setting up the highlight material
-        Material mat = Gaze_Settings.HighlightMaterial;
+        Material mat = GazeSettings.HighlightMaterial;
         mat.SetColor("g_vOutlineColor", _color);
         mat.SetFloat("g_flOutlineWidth", _lineWidth / 100f);
         _highlight.AddComponent<MeshRenderer>().material = mat;
