@@ -593,6 +593,10 @@ PrefabInstance:
       propertyPath: teleportAction.actionPath
       value: /actions/default/in/Teleport
       objectReference: {fileID: 0}
+    - target: {fileID: 11445746, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
+      propertyPath: traceLayerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
 --- !u!4 &929284605 stripped
@@ -3824,6 +3828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884616471269106302, guid: 2e6c0e7e22f2f124a8d6dcaa090e8516,
+        type: 3}
+      propertyPath: previewLeftInstance
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e6c0e7e22f2f124a8d6dcaa090e8516, type: 3}

@@ -8,6 +8,10 @@ TagManager:
   - FxTemporaire
   - AmplifiedLeft
   - AmplifiedRight
+  - SimObjPhysics
+  - Receptacle
+  - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Teleport
   - 
   - 
   - 
